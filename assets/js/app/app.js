@@ -1,6 +1,6 @@
 var RiskCityApp = angular.module('RiskCityApp',['ngRoute','ngResource']);
 
-RiskCityApp.run(['$rootScope','AlertService','UserService',function($rootScope,AlertService,UserService) {
+RiskCityApp.run(['$rootScope','AlertService','UserService','MarkerService',function($rootScope,AlertService,UserService,MarkerService) {
 
 
    UserService.check(function(err,data){

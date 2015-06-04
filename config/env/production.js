@@ -34,5 +34,14 @@ module.exports = {
   // log: {
   //   level: "silent"
   // }
+  connections:{
+        myMongoDbServerProd: {
+            adapter: 'sails-mongo',
+            url: 'mongodb://heroku_app37515298:p8qnhmc6mv6s1h7sgl5ui33jld@ds043082.mongolab.com:43082/heroku_app37515298'
+        }
+    },
 
+    models:{
+        connection: 'myMongoDbServerProd'
+    }
 };

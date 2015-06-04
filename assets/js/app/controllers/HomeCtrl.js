@@ -1,5 +1,9 @@
-RiskCityApp.controller('HomeCtrl',['$scope','NeighborsService',function($scope,NeighborsService){
+RiskCityApp.controller('HomeCtrl',['$scope','MarkerService',function($scope,MarkerService){
   $( document ).ready(function(){
+    var position = {}
+    var currentHood = {}
+    var coords = []
+    var hoods = {}
     $.ajax({
       dataType: "json",
       url: '/js/app/data/_geohoods.geojson',
@@ -11,7 +15,7 @@ RiskCityApp.controller('HomeCtrl',['$scope','NeighborsService',function($scope,N
       }
     });
 
-    var hoods = {}
+
     console.log("checking neighbors: ", myLayer)
 
     //Map Stuff!
@@ -23,77 +27,91 @@ RiskCityApp.controller('HomeCtrl',['$scope','NeighborsService',function($scope,N
       // .featureLayer.setGeoJSON(geojson);
     var myLayer = L.mapbox.featureLayer().addTo(map);
 
-    var markerRed = L.marker(new L.LatLng(47.65776,-122.36345), {
-      icon: L.mapbox.marker.icon({
-          "title": "Jake",
-          'description':"red",
-          'marker-color': 'ff8888',
-          'marker-symbol': 'pitch',
-          'marker-size': 'small'
-      }),
-      draggable: true,
-      clickable: true
-    });
-   var markerBlue = L.marker(new L.LatLng(47.66776,-122.36345), {
-    icon: L.mapbox.marker.icon({
-        "title": "Annie",
-        'description':"blue",
-        'marker-color': '0928CD',
-        'marker-symbol': 'pitch',
-        'marker-size': 'small'
-    }),
-    draggable: true,
-    clickable: true
-  });
-
-    markerBlue.addTo(map)
+    var marker = function(color) {
+      console.log("test blue!")
+      L.marker(new L.LatLng(47.65776,-122.36345), {
+        icon: L.mapbox.marker.icon({
+            "title": "Jake",
+            'description':color,
+            'marker-color': '0928CD',
+            'marker-symbol': 'pitch',
+            'marker-size': 'small'
+        }),
+        draggable: true,
+        clickable: true
+      })
+      .addTo(map)
       .on('dragend', function(e) {
         var layer = leafletPip.pointInLayer(this.getLatLng(), myLayer, true);
         if (layer.length) {
           console.log("changing to blue")
-          layer[0].feature.properties['fill'] = '#0928CD';
+          layer[0].feature.properties['fill'] = color;
           myLayer.setGeoJSON(hoods)
         } else {
           console.log("marker is not in a neighborhood.")
         }
       });
-    var position = {}
-    var currentHood = {}
-    var coords = []
-    markerRed.addTo(map)
-      .on('mousedown',function(e){
-        position = this.getLatLng()
-        currentHood = leafletPip.pointInLayer(this.getLatLng(), myLayer, true);
-        neighbors = currentHood[0].feature.neighbors
-        console.log("neighbors: ",neighbors);
-      })
-      .on('dragend', function(e) {
-        var layer = leafletPip.pointInLayer(this.getLatLng(), myLayer, true);
-        if (layer.length) {
-          var adjacent = false
-          console.log("layer neighbors", layer[0].feature.properties.name)
-          newHood = layer[0].feature.properties.name
-          for (var k in neighbors) {
-            if (neighbors[k] == newHood){
-              adjacent = true
-            }
-          }
-          if (adjacent) {
-            console.log("neighbor!")
-            layer[0].feature.properties['fill'] = '#ff8888';
-            myLayer.setGeoJSON(hoods)
-            adjacent = false
-          } else {
-            console.log("not a neighbor!!!!")
-            this.setLatLng(position);
-            myLayer.setGeoJSON(hoods)
-          }
-        } else {
-          console.log("marker is not in a neighborhood.")
-          this.setLatLng(position);
-          myLayer.setGeoJSON(hoods)
-        }
-      });
+    }
+    marker("blue");
+    // marker("red");
+  //  var markerBlue = L.marker(new L.LatLng(47.66776,-122.36345), {
+  //   icon: L.mapbox.marker.icon({
+  //       "title": "Annie",
+  //       'description':"blue",
+  //       'marker-color': '0928CD',
+  //       'marker-symbol': 'pitch',
+  //       'marker-size': 'small'
+  //   }),
+  //   draggable: true,
+  //   clickable: true
+  // });
+
+    // markerBlue.addTo(map)
+    //   .on('dragend', function(e) {
+    //     var layer = leafletPip.pointInLayer(this.getLatLng(), myLayer, true);
+    //     if (layer.length) {
+    //       console.log("changing to blue")
+    //       layer[0].feature.properties['fill'] = color;
+    //       myLayer.setGeoJSON(hoods)
+    //     } else {
+    //       console.log("marker is not in a neighborhood.")
+    //     }
+    //   });
+
+    // markerRed.addTo(map)
+    //   .on('mousedown',function(e){
+    //     position = this.getLatLng()
+    //     currentHood = leafletPip.pointInLayer(this.getLatLng(), myLayer, true);
+    //     neighbors = currentHood[0].feature.neighbors
+    //     console.log("neighbors: ",neighbors);
+    //   })
+    //   .on('dragend', function(e) {
+    //     var layer = leafletPip.pointInLayer(this.getLatLng(), myLayer, true);
+    //     if (layer.length) {
+    //       var adjacent = false
+    //       console.log("layer neighbors", layer[0].feature.properties.name)
+    //       newHood = layer[0].feature.properties.name
+    //       for (var k in neighbors) {
+    //         if (neighbors[k] == newHood){
+    //           adjacent = true
+    //         }
+    //       }
+    //       if (adjacent) {
+    //         console.log("neighbor!")
+    //         layer[0].feature.properties['fill'] = '#ff8888';
+    //         myLayer.setGeoJSON(hoods)
+    //         adjacent = false
+    //       } else {
+    //         console.log("not a neighbor!!!!")
+    //         this.setLatLng(position);
+    //         myLayer.setGeoJSON(hoods)
+    //       }
+    //     } else {
+    //       console.log("marker is not in a neighborhood.")
+    //       this.setLatLng(position);
+    //       myLayer.setGeoJSON(hoods)
+    //     }
+    //   });
 
     map.on('mousemove click', function(e) {
         window[e.type].innerHTML = e.containerPoint.toString() + ', ' + e.latlng.toString();
