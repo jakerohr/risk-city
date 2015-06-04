@@ -1,0 +1,58 @@
+<div ng-app="RiskCityApp">
+  <div ng-controller="NavCtrl">
+    <nav>
+      <div class="nav-wrapper teal darken-1">
+        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down">
+            <!-- Modal Trigger -->
+          <!-- <li><a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a></li> -->
+          <li><a href="#" ng-click="showLogin()" ng-hide="currentUser" class="waves-effect waves-blue"><i class="mdi-maps-directions-walk"></i></a></li>
+          <li><a href="#!" ng-show="currentUser">Welcome, {{currentUser.name || 'User'}}</a></li>
+          <li><a href="#" ng-click="logout()" ng-show="currentUser" class="waves-effect waves-blue"><i class="mdi-maps-hotel"></i></a></li>
+          <li><a href="/" class="waves-effect waves-blue"><i class="mdi-action-home"></i></a></li>
+          <li><a href="/about" class="waves-effect waves-blue"><i class="mdi-action-info"></i></a></li>
+        </ul>
+         <ul class="side-nav" id="mobile-demo">
+          <li><a href="/"><i class="mdi-action-home waves-blue">Home</i></a></li>
+          <li><a href="/about"><i class="mdi-action-info waves-blue">About</i></a></li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Modal Structure -->
+    <div class="row">
+      <form class="form col s12">
+        <div id="modal1" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Please Log In</h4>
+            <p>A bunch of text</p>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input ng-model="email" id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input ng-model="password" id="password" type="password" class="validate">
+                  <label for="password">Password</label>
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button  ng-click="login()" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="action">Submit
+              <i class="mdi-content-send right"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <ng-view></ng-view>
+  </div>
+
+</div>
+
