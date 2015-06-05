@@ -1,14 +1,23 @@
 
-<h1>Risk City Homepage</h1>
+<h1>Risk City</h1>
 <div id='map-wrapper row'>
-  <div id='output' class='ui-control'>
+  <!-- <div id='output' class='ui-control'>
     Click: <code id='click'></code><br/>
     Mousemove: <code id='mousemove'></code><br/>
-  </div>
-  <div class="col s3">
-    <a class="waves-effect waves-light btn-large" ng-click="reset()"><i class="mdi-file-cloud right"></i>Start Game</a>
-  </div>
+  </div> -->
+
+    <div class="col s3">
+      <a class="waves-effect blue waves-light btn-large" ng-click="reset()"><i class="mdi-content-flag right"></i>Start Game</a>
+    </div>
+    <br>
+    <br>
+    <div class="col s3">
+      <a class="waves-effect blue waves-light btn-large" ng-click="checkStuff()"><i class="mdi-social-people right"></i>Get Reinforcements</a>
+    </div>
+
   <div class="col s6 offset-s6">
-    <div id='map'></div>
+    <div class="z-depth-3" id='map'></div>
   </div>
 </div>
+
+
