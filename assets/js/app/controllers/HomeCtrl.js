@@ -28,7 +28,11 @@ RiskCityApp.controller('HomeCtrl',['$scope','MarkerService',function($scope,Mark
     L.mapbox.accessToken = 'pk.eyJ1IjoiamFrZXJvaHIiLCJhIjoiNmQxZDQ2NTliYjM5NDQ1ZDNiMDc4ZjdiYTA4YjlkM2QifQ.DkjkobnU0AM9BkDy-CE9CQ';
     var click = document.getElementById('click'),
       mousemove = document.getElementById('mousemove');
-    var map = L.mapbox.map('map', 'mapbox.streets')
+    var map = L.mapbox.map('map', 'mapbox.streets', {
+      minZoom:11,
+      maxZoom:14,
+      maxBounds: [[47.4,-122.5],[47.8,-122.1]]
+      })
     .setView([47.6097,-122.3331], 11)
       // .featureLayer.setGeoJSON(geojson);
     var myLayer = L.mapbox.featureLayer().addTo(map);
@@ -221,6 +225,7 @@ RiskCityApp.controller('HomeCtrl',['$scope','MarkerService',function($scope,Mark
       blueNum =  Math.round(blueHoods/3)
       redNum = Math.round(redHoods/3)
     }
+
     var reinforce = function(blueHoods,redHoods){
       addTroops(blueHoods,redHoods);
       var onMap = false;

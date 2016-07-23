@@ -2,12 +2,13 @@ h1 {
   font-weight: 300;
   font-style: italic;
   font-variant: small-caps;
+  font-size: 50px;
 }
 
 #map-wrapper {
-  position: relative;
+  /*position: relative;*/
   height: 320px;
-  margin: 0 0 20px;
+  /*margin: 0 0 20px;*/
   overflow: hidden;
 }
 /*body {
@@ -16,10 +17,10 @@ h1 {
 }*/
 
 #map {
-  position: absolute;
-  top: 75px;
+  /*position: absolute;*/
+/*  top: 75px;
   bottom: 0;
-  left: 550px;
+  left: 550px;*/
   width: 600px;
   height: 600px;
   /*float: right;*/

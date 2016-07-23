@@ -1,27 +1,40 @@
-
-<h1>Risk City</h1>
-
-<div id='map-wrapper row'>
+<div class="contain">
+<div class="col-4 center space-bottom">
+    <h1>Risk City</h1>
+  </div>
+  <div id='map-wrapper row'>
   <!-- <div id='output' class='ui-control'>
-    Click: <code id='click'></code><br/>
-    Mousemove: <code id='mousemove'></code><br/>
+  Click: <code id='click'></code><br/>
+  Mousemove: <code id='mousemove'></code><br/>
   </div> -->
-
-    <div class="col s3">
+  <!-- <div class="col s12 m6">
+    <div class="col s6 m12">
       <a class="waves-effect blue waves-light btn-large" ng-click="reset()"><i class="mdi-content-flag right"></i>Start Game</a>
     </div>
-    <br>
-    <div class="col s3">
+    <div class="col s6 m12">
       <a class="waves-effect blue waves-light btn-large" ng-click="checkStuff()"><i class="mdi-social-people right"></i>Get Reinforcements</a>
     </div>
-    <br>
-    <div class="col s3 info">
-      <p>This game is currently under development so there's not much to do here yet besides drag markers around. See the about page for planned features.</p>
-    </div>
-
-  <div class="col s6 offset-s6">
-    <div class="z-depth-3" id='map'></div>
+  </div> -->
+  <!--     <div class="col s3 info">
+  <p>This game is currently under development so there's not much to do here yet besides drag markers around. See the about page for planned features.</p>
   </div>
-</div>
-
-
+  
+  <div class="col s12 m6">
+    <div class="z-depth-3" id='map'></div>
+  </div> -->
+  
+  
+      <div class='col5 center'>
+        <div class='col12s'>
+          <a href='#' class='col10 margin1 space-bottom button' ng-click="reset()"><i class="mdi-content-flag right"></i>Start Game</a>
+          <a href='#' class='col10 margin1 space-bottom button' ng-click="checkStuff()"><i class="mdi-social-people right"></i>Get Reinforcements</a>
+        </div>
+      </div>
+      <div class='col7 center'>
+        <div id='map'></div>
+      </div>
+    </div>
+  
+  
+  
+  </div>

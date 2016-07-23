@@ -12,7 +12,7 @@ RiskCityApp.factory('MarkerService',[function(){
         dataType: 'json',
         success: function(data){
         // console.log(data.results[0].user.name.first);
-        name = data.results[0].user.name.first;
+        name = data.results[0].name.first;
         first = name[0].toUpperCase();
         firstName = first.concat(name.slice(1));
         console.log(firstName)
